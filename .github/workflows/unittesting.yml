@@ -13,7 +13,7 @@ jobs:
     name: Unit Testing
     strategy:
       matrix:
-        node: [18,20]
+        node: [20]
         operating_system: [ubuntu-latest]
 
     runs-on: ${{ matrix.operating_system }}
@@ -41,7 +41,8 @@ jobs:
           name: Mocha-Test-Result
           path: test-results.xml
   code-coverage:
-    name: Unit Testing
+    needs: unit-testing
+    name: code-coverage
 
     runs-on: ubuntu-latest
 
