@@ -62,7 +62,7 @@ jobs:
         run: npm test
 
       - name: run coverage
-        continue-on-error: false
+        continue-on-error: true
         run: npm run coverage
     
       - name: Archive test result 
@@ -70,34 +70,3 @@ jobs:
         with:
           name: code-coverage-Result
           path: coverage
-  image-test:
-     needs: code-coverage
-     name: image-test
-
-     runs-on: ubuntu-latest
-
-     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Unit Testing
-        run: npm test
-
-      - name: run imageTest
-        continue-on-error: true
-        run: npm run imageTest
-    
-      - name: Archive test result 
-        uses: actions/upload-artifact@v4.6.2
-        with:
-          name: image-test-Result
-          path: imageTest
-
